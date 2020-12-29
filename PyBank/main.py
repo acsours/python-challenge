@@ -55,6 +55,7 @@ for each_month in pybank_list:
     # print(net_total)
     # exit()
 
+# calculate changes in profit/losses over entire period, then find average of those changes
     if previous_finances != 0:
         
         value_change = current_finances - previous_finances
@@ -63,24 +64,14 @@ for each_month in pybank_list:
         # print(f'Value change is {value_change}')
 
     previous_finances = current_finances
-
-    # previous_finances = int(each_month[1])
-
-    # print(previous_finances)
-
- 
-
+    # find average of changes
+    average_change = round((cum_value_change / (total_months - 1)), 2)
+    
 
 print(f'Net total: {net_total} dollars')
-# print('Net total: ' + str(net_total))
-# value_change -= current_finances
+print(f'total value change: {cum_value_change}')
+print(f'average change is: {average_change}')    
 
-# print('Value change: ' + str(value_change))
-
-    
-# calculate changes in profit/losses over entire period, then find average of those changes
-# def value_change(profits_losses):
-#     value_change = profit_losses[1] - profit_losses[0]
 
 
 # print(value_change({profits_losses}))
