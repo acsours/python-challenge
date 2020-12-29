@@ -4,19 +4,34 @@ import csv
 
 csvpath = os.path.join('Resources', 'election_data.csv') 
 
+
+# declare some variables
+vote_count = 0
+vote_percentage = 0
+candidate_vote = 0
+popular_vote = 0
+
+# create a dictionary to hold candidate names
+candidate_list = {}
+
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=',')
 
     csv_header = next(csvreader)
-    print(f'CSV Header: {csv_header}')
+    # print(f'CSV Header: {csv_header}')
+
+
 
     for each_row in csvreader:
-        print(each_row)
+        # calculate total number votes cast
+        vote_count += 1
+            
+    print(f'Total votes: {vote_count} ') 
+        
 
-        exit()
-
-# calculate total number votes cast
-# calculate complete list candidates who received votes
+# calculate complete list of candidates who received votes
+    # check value at each_row[2]
+    # if value at each_row[2] is different: start a new count
 # calculate percentage of votes each candidate won
 # calculate total number of votes each candidate won
 # winner of election vased on popular vote
