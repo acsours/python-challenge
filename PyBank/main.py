@@ -8,7 +8,6 @@ csvfile = open(pybank_path)
 
 csvreader = csv.reader(csvfile, delimiter=',')
 
-# print(csvreader)
 # read header row first
 csv_header = next(csvreader)
 # print(f'CSV Header: {csv_header}')
@@ -32,25 +31,63 @@ for row in csvreader:
 
 # zip together into a single tuple
 pybank_list = list(zip(date, profit_losses))
-# print(pybank_list[11])
+
+print(pybank_list[11])
 # print(date)
 
-# calcluate (should each of these be a new function?)
+# declare variables
+net_total = 0
+previous_finances = 0
+value_change = 0
+cum_value_change = 0
+row_index = 0
+
 # total number of months in dataset (len)
 total_months = len(date)
-print(f'Total months = {total_months}')
-    # net total amount of profit/losses over entire period
-net_total = 0
+#print('Total months: ' + str(total_months))
+print(f'Total months: {total_months}')  
 
 # calculate net total of profits/losses over entire period
 for each_month in pybank_list:
-    net_total = net_total + int(each_month[1])
+    #print(each_month[1])
+    current_finances = int(each_month[1])
+    net_total += current_finances
     # print(net_total)
-print(f'Net total = {net_total} dollars')
+    # exit()
+
+    if previous_finances != 0:
+        
+        value_change = current_finances - previous_finances
+        cum_value_change += value_change
+        row_index += 1
+        # print(f'Value change is {value_change}')
+
+    previous_finances = current_finances
+
+    # previous_finances = int(each_month[1])
+
+    # print(previous_finances)
+
+ 
+
+
+print(f'Net total: {net_total} dollars')
+# print('Net total: ' + str(net_total))
+# value_change -= current_finances
+
+# print('Value change: ' + str(value_change))
+
     
-    # calculate changes in profit/losses over entire period, then find average of those changes
-    # greatest increase in profits (date and amount) over entire period
-    # greatest decrease in losses (date and amount) over entire period
+# calculate changes in profit/losses over entire period, then find average of those changes
+# def value_change(profits_losses):
+#     value_change = profit_losses[1] - profit_losses[0]
+
+
+# print(value_change({profits_losses}))
+    # go through each month's profit/loss value - profit_losses[1]-profit_losses[0]
+    # calculate average 
+# greatest increase in profits (date and amount) over entire period
+# greatest decrease in losses (date and amount) over entire period
 '''
 Financial Analysis
 ----------------------------
