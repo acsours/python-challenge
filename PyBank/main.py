@@ -25,15 +25,8 @@ for row in csvreader:
     date.append(row[0])
     profit_losses.append(row[1])
 
-# print(f'date is {date[0]} and profit/losses is {profit_losses[0]}')
-# print(profit_losses[0])
-#print(f'{len(date)}{len(profit_losses)}')
-
 # zip together into a single tuple
 pybank_list = list(zip(date, profit_losses))
-
-print(pybank_list[11])
-# print(date)
 
 # declare variables
 net_total = 0
@@ -41,11 +34,15 @@ previous_finances = 0
 value_change = 0
 cum_value_change = 0
 row_index = 0
+profit_increase = 0
+profit_decrease = 0
+profit_increase_date = ""
+profit_decrease_date = ""
 
 # total number of months in dataset (len)
 total_months = len(date)
 #print('Total months: ' + str(total_months))
-print(f'Total months: {total_months}')  
+
 
 # calculate net total of profits/losses over entire period
 for each_month in pybank_list:
@@ -67,26 +64,31 @@ for each_month in pybank_list:
     # find average of changes
     average_change = round((cum_value_change / (total_months - 1)), 2)
     
+    # greatest increase in profits (date and amount) over entire period
+    if value_change > profit_increase:
+        profit_increase = value_change
+        #need to pull value from each_month[0]
+        profit_increase_date = each_month[0]
 
-print(f'Net total: {net_total} dollars')
-print(f'total value change: {cum_value_change}')
-print(f'average change is: {average_change}')    
+    # greatest decrease in losses (date and amount) over entire period
+    if value_change < profit_decrease:
+        profit_decrease = value_change
+        profit_decrease_date = each_month[0]
 
-
-
-# print(value_change({profits_losses}))
-    # go through each month's profit/loss value - profit_losses[1]-profit_losses[0]
-    # calculate average 
-# greatest increase in profits (date and amount) over entire period
-# greatest decrease in losses (date and amount) over entire period
-'''
+output = f"""
 Financial Analysis
-----------------------------
-Total Months: 86
-Total: $38382578
-Average  Change: $-2315.12
-Greatest Increase in Profits: Feb-2012 ($1926159)
-Greatest Decrease in Profits: Sep-2013 ($-2196167)
-'''
-# print analysis to terminal and export text file with results
-# write to new file here: where does this need to happen? before or after calculations? I think it happens after...- directions just say export text file with results
+------------------------------
+Total Months: {total_months}
+Net Total: ${net_total}
+Average Change: ${average_change}
+Greatest Increase in Profits: {profit_increase_date} (${profit_increase})   
+Greatest Decrease in Profits: {profit_decrease_date} (${profit_decrease})
+"""
+
+print(output)
+
+#export text file with results
+output_path = os.path.join('analysis', 'PyBank.txt')
+
+with open(output_path, 'w') as txtfile:
+    txtfile.write(output)
