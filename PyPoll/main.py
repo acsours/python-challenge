@@ -8,8 +8,12 @@ csvpath = os.path.join('Resources', 'election_data.csv')
 # declare some variables
 vote_count = 0
 vote_percentage = 0
-candidate_vote = 0
+khan_vote = 0
+correy_vote = 0
+li_vote = 0
+otooley_vote = 0
 popular_vote = 0
+candidate = ""
 
 # create a dictionary to hold candidate names
 candidate_list = {}
@@ -25,12 +29,25 @@ with open(csvpath) as csvfile:
     for each_row in csvreader:
         # calculate total number votes cast
         vote_count += 1
-            
-    print(f'Total votes: {vote_count} ') 
-        
+        candidate = each_row[2]
+        # calculate complete list of candidates who received votes
+        # check value at each_row[2]
+        if candidate == "Khan":
+            khan_vote += 1
+        if candidate == "Correy":
+            correy_vote += 1
+        if candidate == "Li":
+            li_vote += 1
+        if candidate == "O'Tooley":
+            otooley_vote += 1
+    
+    print(f'Khan total votes: {khan_vote}')
+    print(f'Correy total votes: {correy_vote}')
+    print(f'Li total votes: {li_vote}')
+    print(f"O'Tooley total votes: {otooley_vote}")
+    # print(f'{candidate}')          
+    # print(f'Total votes: {vote_count} ')  
 
-# calculate complete list of candidates who received votes
-    # check value at each_row[2]
     # if value at each_row[2] is different: start a new count
 # calculate percentage of votes each candidate won
 # calculate total number of votes each candidate won
