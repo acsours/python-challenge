@@ -12,7 +12,7 @@ khan_vote = 0
 correy_vote = 0
 li_vote = 0
 otooley_vote = 0
-popular_vote = 0
+popular_winner = ""
 candidate = ""
 
 # create a dictionary to hold candidate names
@@ -47,6 +47,20 @@ with open(csvpath) as csvfile:
     li_percentage = (li_vote/vote_count)*100
     otooley_percentage = (otooley_vote/vote_count)*100
     
+    if khan_vote > correy_vote and khan_vote > li_vote and khan_vote > otooley_vote:
+        popular_winner = "Khan"
+
+    if correy_vote > khan_vote and correy_vote > li_vote and correy_vote > otooley_vote:
+        popular_winner = "Correy"
+  
+    if li_vote > khan_vote and li_vote > correy_vote and li_vote > otooley_vote:
+        popular_winner = "Li"
+    
+    if otooley_vote > khan_vote and otooley_vote > li_vote and otooley_vote > correy_vote:
+        popular_winner = "O'Tooley"
+    
+    
+    
     output = f"""
     Election Results
     -------------------------------
@@ -56,32 +70,16 @@ with open(csvpath) as csvfile:
     Correy: {correy_percentage:.3f}% ({correy_vote})
     Li: {li_percentage:.3f}% ({li_vote})
     O'Tooley: {otooley_percentage:.3f}% ({otooley_vote})
+    -------------------------------
+    Winner: {popular_winner}
     """
     
     print(output)
-    
-    # print(f'Khan total votes: {khan_vote}')
-    # print(f'Correy total votes: {correy_vote}')
-    # print(f'Li total votes: {li_vote}')
-    # print(f"O'Tooley total votes: {otooley_vote}")
-    # # print(f'{candidate}')          
-    # print(f'Total votes: {vote_count} ')  
 
-# calculate percentage of votes each candidate won
-
-# calculate total number of votes each candidate won
-# winner of election vased on popular vote
-# print analysis to terminal in this format:
-    # Election Results
-    # -------------------------
-    # Total Votes: 3521001
-    # -------------------------
-    # Khan: 63.000% (2218231)
-    # Correy: 20.000% (704200)
-    # Li: 14.000% (492940)
-    # O'Tooley: 3.000% (105630)
-    # -------------------------
-    # Winner: Khan
-    # -------------------------
 
 # export text file with results
+
+output_path = os.path.join('analysis', 'PyPoll.txt')
+
+with open(output_path, 'w') as txtfile:
+    txtfile.write(output)
