@@ -41,15 +41,34 @@ with open(csvpath) as csvfile:
         if candidate == "O'Tooley":
             otooley_vote += 1
     
-    print(f'Khan total votes: {khan_vote}')
-    print(f'Correy total votes: {correy_vote}')
-    print(f'Li total votes: {li_vote}')
-    print(f"O'Tooley total votes: {otooley_vote}")
-    # print(f'{candidate}')          
+
+    khan_percentage = (khan_vote/vote_count)*100
+    correy_percentage = (correy_vote/vote_count)*100
+    li_percentage = (li_vote/vote_count)*100
+    otooley_percentage = (otooley_vote/vote_count)*100
+    
+    output = f"""
+    Election Results
+    -------------------------------
+    Total Votes: {vote_count}
+    -------------------------------
+    Khan: {khan_percentage:.3f}% ({khan_vote})
+    Correy: {correy_percentage:.3f}% ({correy_vote})
+    Li: {li_percentage:.3f}% ({li_vote})
+    O'Tooley: {otooley_percentage:.3f}% ({otooley_vote})
+    """
+    
+    print(output)
+    
+    # print(f'Khan total votes: {khan_vote}')
+    # print(f'Correy total votes: {correy_vote}')
+    # print(f'Li total votes: {li_vote}')
+    # print(f"O'Tooley total votes: {otooley_vote}")
+    # # print(f'{candidate}')          
     # print(f'Total votes: {vote_count} ')  
 
-    # if value at each_row[2] is different: start a new count
 # calculate percentage of votes each candidate won
+
 # calculate total number of votes each candidate won
 # winner of election vased on popular vote
 # print analysis to terminal in this format:
