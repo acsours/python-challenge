@@ -11,10 +11,15 @@ csvreader = csv.reader(csvfile, delimiter=',')
 # read header row first
 csv_header = next(csvreader)
 
-# create new lists for data from csv
+# create new lists for data from csv, populate lists with values and zip together
 date = []
 profit_losses = []
 
+for row in csvreader:
+    date.append(row[0])
+    profit_losses.append(row[1])
+
+pybank_list = list(zip(date, profit_losses))
 
 # declare variables
 net_total = 0
@@ -32,7 +37,7 @@ total_months = len(date)
 
 
 # calculate net total of profits/losses over entire period
-for each_month in csvreader:
+for each_month in pybank_list:
     current_finances = int(each_month[1])
     net_total += current_finances
     
