@@ -9,7 +9,7 @@ This code imprts a csv file containing financial data that includes dates and cu
   - greatest increase in profits
   - greatest decrease in profits
 
-ADD ANALYSIS HERE
+For a period of 86 months, the greatest increase in profits was Feb 2012 with $1926159. The greatest decrease in profits was Sept 2013 with $-2196167. The average change was $-2315.12 and the net total was $38382578.
 
 
 PyPoll main.py
