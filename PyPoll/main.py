@@ -12,7 +12,7 @@ khan_vote = 0
 correy_vote = 0
 li_vote = 0
 otooley_vote = 0
-popular_winner = ""
+popular_vote = 0
 candidate = ""
 
 # Read csv file, skip header
@@ -30,31 +30,51 @@ with open(csvpath) as csvfile:
         # calculate complete list of candidates who received votes
         if candidate == "Khan":
             khan_vote += 1
-        if candidate == "Correy":
+        elif candidate == "Correy":
             correy_vote += 1
-        if candidate == "Li":
+        elif candidate == "Li":
             li_vote += 1
-        if candidate == "O'Tooley":
+        elif candidate == "O'Tooley":
             otooley_vote += 1
-    
+        else:
+            print(f"candidate unkown {candidate}")
+
     # use candidate vote totals to calculate percentages
     khan_percentage = (khan_vote/vote_count)*100
     correy_percentage = (correy_vote/vote_count)*100
     li_percentage = (li_vote/vote_count)*100
     otooley_percentage = (otooley_vote/vote_count)*100
     
-    # Calculate popular vote winner
-    if khan_vote > correy_vote and khan_vote > li_vote and khan_vote > otooley_vote:
-        popular_winner = "Khan"
+    # Assign dictionary to calculate pop vote winner
+    candidate_votes_dictionary = {
+        "Khan": khan_vote,
+        "Correy": correy_vote,
+        "Li": li_vote,
+        "O'Tooley": otooley_vote
+    }
 
-    if correy_vote > khan_vote and correy_vote > li_vote and correy_vote > otooley_vote:
-        popular_winner = "Correy"
+    # print(candidate_votes_dictionary)
 
-    if li_vote > khan_vote and li_vote > correy_vote and li_vote > otooley_vote:
-        popular_winner = "Li"    
+    for candidate,votes in candidate_votes_dictionary.items():
+        if votes > popular_vote:
+            popular_vote = votes
+            popular_winner = candidate
+
+
+    # print(popular_winner)
+
+    # # Calculate popular vote winner
+    # if khan_vote > correy_vote and khan_vote > li_vote and khan_vote > otooley_vote:
+    #     popular_winner = "Khan"
+
+    # if correy_vote > khan_vote and correy_vote > li_vote and correy_vote > otooley_vote:
+    #     popular_winner = "Correy"
+
+    # if li_vote > khan_vote and li_vote > correy_vote and li_vote > otooley_vote:
+    #     popular_winner = "Li"    
     
-    if otooley_vote > khan_vote and otooley_vote > li_vote and otooley_vote > correy_vote:
-        popular_winner = "O'Tooley"
+    # if otooley_vote > khan_vote and otooley_vote > li_vote and otooley_vote > correy_vote:
+    #     popular_winner = "O'Tooley"
     
 
     # print results in terminal
