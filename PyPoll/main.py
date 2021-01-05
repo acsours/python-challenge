@@ -53,29 +53,12 @@ with open(csvpath) as csvfile:
         "O'Tooley": otooley_vote
     }
 
-    # print(candidate_votes_dictionary)
 
     for candidate,votes in candidate_votes_dictionary.items():
         if votes > popular_vote:
             popular_vote = votes
             popular_winner = candidate
 
-
-    # print(popular_winner)
-
-    # # Calculate popular vote winner
-    # if khan_vote > correy_vote and khan_vote > li_vote and khan_vote > otooley_vote:
-    #     popular_winner = "Khan"
-
-    # if correy_vote > khan_vote and correy_vote > li_vote and correy_vote > otooley_vote:
-    #     popular_winner = "Correy"
-
-    # if li_vote > khan_vote and li_vote > correy_vote and li_vote > otooley_vote:
-    #     popular_winner = "Li"    
-    
-    # if otooley_vote > khan_vote and otooley_vote > li_vote and otooley_vote > correy_vote:
-    #     popular_winner = "O'Tooley"
-    
 
     # print results in terminal
     output = f"""
