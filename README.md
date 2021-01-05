@@ -1,7 +1,7 @@
 # python-challenge
 
 PyBank main.py
-This code imprts a csv file containing financial data that includes dates and current finances at any given date. The code cycles through the data and prints the following information to terminal and a text file:
+This code imports a csv file containing financial data that includes dates and current finances at any given date. The code cycles through the data and prints the following information to terminal and a text file:
 
   - total number of months in dataset
   - net total of profits/losses over entire period
@@ -13,7 +13,7 @@ For a period of 86 months, the greatest increase in profits was Feb 2012 with $1
 
 
 PyPoll main.py
-This code imprts a csv file containing financial data that includes polling information for a local election. The code cycles through the data and prints the following information to terminal and a text file:
+This code imports a csv file containing polling information for a local election. The code cycles through the data and prints the following information to terminal and a text file:
 
   - total number of votes
   - individual canditate names and vote totals/percentages
